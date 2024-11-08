@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolhas Subindo com Cor Mudando</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #00bcd4; /* Cor inicial */
+            border-radius: 50%;
+            animation: bubbleAnimation linear infinite;
+        }
+
+        @keyframes bubbleAnimation {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+                background-color: #00bcd4; /* Cor inicial (azul) */
+            }
+            50% {
+                background-color: #ff4081; /* Cor intermediária (rosa) */
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+                background-color: #4caf50; /* Cor final (verde) */
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            document.body.appendChild(bubble);
+
+            // Posição aleatória no eixo X
+            bubble.style.left = `${Math.random() * window.innerWidth}px`;
+
+            // Tamanho aleatório das bolhas
+            const size = Math.random() * (60 - 30) + 30;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+
+            // Duração aleatória da animação
+            const duration = Math.random() * 3 + 2;
+            bubble.style.animationDuration = `${duration}s`;
+
+            // Remover a bolha após a animação
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        }
+
+        // Criar bolhas a cada 150ms
+        setInterval(createBubble, 150);
+    </script>
+</body>
+</html>
